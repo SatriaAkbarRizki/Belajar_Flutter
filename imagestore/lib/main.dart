@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MainApp());
@@ -79,7 +80,10 @@ class HomeState extends State<ClassState> {
                 ),
                 menuImage(),
                 SizedBox(
-                  height: 1200,
+                  height: 10,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
                   child: listImage(),
                 ),
               ],
@@ -99,79 +103,54 @@ class HomeState extends State<ClassState> {
         itemCount: nameMenuImage.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
+              margin: EdgeInsets.only(left: 4),
               child: GestureDetector(
-            onTap: () {},
-            child: Container(
-                child: Card(
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black),
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 90,
-                    child: Container(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(nameMenuImage[index]),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )),
-          ));
+                onTap: () {},
+                child: Container(
+                    child: Card(
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 90,
+                        child: Container(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(nameMenuImage[index]),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )),
+              ));
         },
       ),
     );
   }
 
-  Widget menuImage2() {
-    return ListView.builder(
-      itemCount: nameMenuImage.length,
-      itemBuilder: (BuildContext context, int index) {
+  Widget listImage() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 400,
+          childAspectRatio: 1,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20),
+      itemCount: listPictures.length,
+      itemBuilder: (context, index) {
         return Container(
-            child: GestureDetector(
-          onTap: () {},
-          child: Container(
-              child: Card(
-            shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Container(
-              padding: EdgeInsets.all(30),
-              child: Text(nameMenuImage[index]),
-            ),
-          )),
-        ));
+          margin: EdgeInsets.only(left: 10, right: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            image: DecorationImage(
+                image: NetworkImage(listPictures[index]), fit: BoxFit.fitWidth),
+          ),
+        );
       },
     );
-  }
-
-  Widget listImage() {
-    return ListView.builder(
-        itemCount: listPictures.length,
-        itemBuilder: (BuildContext context, index) {
-          return Container(
-            child: GestureDetector(
-              child: Container(
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: SizedBox(
-                          height: 120,
-                          child: Image.network(listPictures[index])),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
-        });
   }
 }
