@@ -1,0 +1,28 @@
+name: imagestore
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+  - family: Work Sans
+    fonts:
+      - asset: assets/fonts/Work_Sans/static/WorkSans-Regular.ttf
+      - asset: assets/fonts/Work_Sans/static/WorkSans-Bold.ttf
+  - family: Alkatra
+    fonts:
+      - asset: assets/fonts/Alkatra/static/Alkatra-Regular.ttf
+      - asset: assets/fonts/Alkatra/static/Alkatra-Bold.ttf
